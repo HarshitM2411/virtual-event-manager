@@ -1,6 +1,6 @@
 const users = require('../models/userModels');
 const bcrypt = require('bcrypt');
-const SALT_ROUND = 5;
+const SALT_ROUND = 10;
 const jwt = require('jsonwebtoken');
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
@@ -9,8 +9,9 @@ const registerUser = async (user) => {
         const newUser = new users(user);
         await newUser.validate();
 
-        user.password = await bcrypt.hash(user.password, SALT_ROUND);
-        const dbUser = await users.create(user);
+        const hashedPassword = await bcrypt.hash(user.password, SALT_ROUND);
+        newUser.password = hashedPassword;
+        const dbUser = await newUser.save({ validateBeforeSave: false });
         return { status: 'success', message:'User create Successfully!', user: dbUser };
     } catch (error) {
         return { status: 'error', message: 'Error creating user', user: null };
