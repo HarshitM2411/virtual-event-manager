@@ -66,10 +66,9 @@ npm run dev
 
 ## Scripts
 
+- `npm test` - run user and event tests with Node test runner
 - `npm run start` - start server (`node app.js`)
 - `npm run dev` - start with nodemon
-
-Note: The current `test` script in `package.json` is a placeholder and not set up with a test runner yet.
 
 ## Authentication
 

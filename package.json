@@ -2,9 +2,9 @@
   "name": "virtual-event-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "npm run test",
+    "test": "node --test --test-concurrency=1 tests/user.test.js tests/event.test.js",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
