@@ -11,7 +11,7 @@ const registerUser = async (user) => {
 
         user.password = await bcrypt.hash(user.password, SALT_ROUND);
         const dbUser = await users.create(user);
-        return { status: 'success', message:'User create Successfully!', user: dbUser };
+        return { status: 'success', message: 'User created successfully!', user: dbUser };
     } catch (error) {
         return { status: 'error', message: 'Error creating user', user: null };
     }
